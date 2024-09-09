@@ -43,6 +43,7 @@ $(function () {
         slidesPerView: 3, // 슬라이드 갯수
         slideToClickedSlide: true, // 슬라이드 클릭시 이동
         effect: 'coverflow',
+        loop: true,
         coverflowEffect: {
             rotate: 0,
             slideShadows: false,
@@ -149,5 +150,25 @@ $(function () {
     $('.tab_in> img').click(function () {
         $('.guide_text1').show(); //.fadeIn(); 
         $('.guide_text>div').not('.guide_text1').hide(); //.fadeOut();  
+    });
+    // 리뷰
+    $(function () {
+        var swiper = new Swiper('.flowslide_inner ', {
+            slidesPerView: 6,//보여지는 갤러리 수
+            spaceBetween: 60,//갤러리 사이 간격
+            speed: 3000,//버튼을 슬라이드가 넘어가는 시간
+            autoplay: {
+                delay: 0,//자동으로 넘어가기 전 머무르는 시간
+                disableOnInteraction: false,
+            },
+            loop: true,//슬라이드 무한반복
+        });
+
+        $('.flowslide .swiper-slide').on('mouseover', function () {
+            swiper.autoplay.stop();
+        });
+        $('.flowslide .swiper-slide').on('mouseout', function () {
+            swiper.autoplay.start();
+        });
     });
 });
